@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Form from "./Components/Form";
 import './styles/index.css';
+import Router from './Router';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Form />
+    <Router />
   </React.StrictMode>,
-)
+);
