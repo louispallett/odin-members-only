@@ -1,7 +1,8 @@
+import axios from "axios";
+import { DevTool } from "@hookform/devtools";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import { useRef } from "react";
+import { useEffect } from "react";
 
 export default function SignUp() {
     // See the playlist on react-hook-form (https://www.youtube.com/playlist?list=PLC3y8-rFHvwjmgBr1327BA5bVXoQH-w5s)
@@ -9,10 +10,28 @@ export default function SignUp() {
     const { register, control, handleSubmit, formState, watch } = form;
     const { errors } = formState;
 
-    const onSubmit = (data) => {
-        console.log("Form submitted");
-        console.log(data)
+    // Development
+    const onSubmit = async (data) => {
+        console.log(data);
+        // fetch("http://localhost:5000/api/users/sign-up", {
+        //     method: "POST",
+        //     headers: { "Content-Type": "application/json" },
+        //     body: data
+        // }).then(() => {
+        //     console.log("Successfully Submitted")
+        // }). catch((err) => console.log(err));
+        try {
+            await axios.post("http://localhost:5000/api/users/sign-up", data, { "cors": true })
+                .then(() => console.log("Successfully submitted"))
+
+        } catch(err) {
+            console.log(err);
+        }
     }
+
+    useEffect(() => {
+
+    }, [])
 
     return (
         <>
