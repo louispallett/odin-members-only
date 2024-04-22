@@ -1,9 +1,9 @@
-/* @font-face {
+@font-face {
     font-family: "Roboto";
     src: 
         url("../assets/fonts/Roboto-Regular.woff2") format("woff2"),
         url("../assets/fonts/Roboto-Regular.woff") format("woff"),
-} */
+}
 
 
 * {
@@ -19,7 +19,6 @@ select:hover {
 
 select {
     cursor: pointer;
-    background-color: #4c0082cc;
 }
 
 input,
@@ -32,7 +31,7 @@ input[type="checkbox"] {
 }
 
 #logo {
-    animation: rotate 4s linear infinite;
+    animation: rotate 2s linear infinite;
 }
 
 #tournaments-wrapper > div > div > label:hover {
