@@ -10,7 +10,7 @@ require('dotenv').config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require("./routes/users.js");
-const passportLogic = require("./public/javascripts/passport.js")
+const passportLogic = require("./config/passport.js")
 
 mongoose.set("strictQuery", false);
 const mongoDB = process.env.MONGODB_URI;
