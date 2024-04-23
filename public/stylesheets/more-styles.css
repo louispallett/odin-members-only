@@ -21,21 +21,12 @@ select {
     cursor: pointer;
 }
 
-input,
-select {
+input {
     animation: fade 800ms ease forwards;
-}
-
-input[type="checkbox"] {
-    cursor: pointer;
 }
 
 #logo {
     animation: rotate 2s linear infinite;
-}
-
-#tournaments-wrapper > div > div > label:hover {
-    cursor: pointer;
 }
 
 @keyframes rotate {
