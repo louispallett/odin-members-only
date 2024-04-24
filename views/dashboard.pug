@@ -1,4 +1,15 @@
 extends layout 
 
 block content 
-    
+        //- div(class="grid grid-cols-2")
+        div(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-xl sm:rounded-lg")
+            //- Messages go here
+            div(class="flex flex-col gap-5")
+                if messages.length 
+                    each message in messages 
+                        div(class="bg-blue-50 py-3 px-6 shadow-xl w-full ring-2 ring-blue-900 rounded-lg")
+                            p=message.content
+                else 
+                    p There are no messages here!
+        div(class="relative bg-white w-full px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto sm:max-w-lg sm:rounded-lg sm:px-10")
+            //- Message FORM goes here
