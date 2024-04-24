@@ -23,6 +23,10 @@ input {
     animation: rotate 4s linear infinite;
 }
 
+a:hover > #github {
+    animation: rotate 500ms ease-in-out;
+}
+
 @keyframes rotate {
     0% {
         transform: rotate(0);
