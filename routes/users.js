@@ -11,6 +11,10 @@ router.get("/sign-in", (req, res, next) => {
   res.render("sign-in", { title: "Sign In" });
 });
 
+router.get("/dashboard", (req, res, next) => {
+  res.render("dashboard", { title: "Dashboard" });
+});
+
 router.post("/sign-up", async (req, res, next) => {
   try {
     bcrypt.hash(req.body.password, 10, async (err, hashedpassword) => {
@@ -20,7 +24,7 @@ router.post("/sign-up", async (req, res, next) => {
         member: false,
       });
       await user.save();
-      res.redirect("/");
+      res.redirect("/dashboard");
     })
   } catch(err) {
     return next(err);

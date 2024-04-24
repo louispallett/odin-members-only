@@ -49,8 +49,8 @@ app.use('/', indexRouter);
 app.use("/users", usersRouter);
 
 app.post("/users/sign-in", passportLogic.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/users/sign-up"
+  successRedirect: "/users/dashboard",
+  failureRedirect: "/users/sign-in"
 }));
 
 // catch 404 and forward to error handler
