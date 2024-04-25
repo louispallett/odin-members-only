@@ -13,8 +13,11 @@ html(lang="en")
         a(href="https://github.com/louispallett/odin-members-only" class="flex justify-start items-center gap-2.5")
           img#github(class="h-4" src="/assets/images/github.svg")
           h2(class="text-sm") by LowPal
-      div(class="flex items-center gap-5")      
-        button#memberBtn(class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 font-bold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Become a member 
+      div(class="flex items-center gap-5") 
+        if user.member
+          p
+        else
+          button#memberBtn(class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 font-bold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Become a member 
         a(href="/users/logout")
           button(class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 font-bold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Log Out
     div(class="grid grid-cols-dashboard justify-around gap-10 px-5 min-h-screen items-start overflow-hidden py-6 sm:py-12")
@@ -24,15 +27,6 @@ html(lang="en")
           a(href="https://github.com/louispallett/odin-members-only" class="flex gap-2.5")
             img#github(class="h-4" src="/assets/images/github.svg")
             h2(class="text-sm") © 2024 LowPal, The Odin Project
-  dialog#memberDialogue(class="relative bg-white px-6 py-8 shadow-xl ring-1 ring-gray-900/5")
-    h1(class="text-xl font-bold tracking-tight text-slate-900 text-nowrap max-sm:text-wrap") Become a member today! 
-    form(action="/users/dashboard/admin-password", method="POST" class="space-y-6")    
-      div 
-        label(for="password") Password
-        input#password(name="password" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
-      div(class="flex justify-around gap-2.5")
-        button(type="submit" class="flex justify-center w-full rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Submit 
-        button(value="cancel" formmethod="dialog" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Cancel
   script(type='text/javascript').
     const memberDialogue = document.getElementById("memberDialogue");
     const memberBtn = document.getElementById("memberBtn");

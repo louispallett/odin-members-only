@@ -42,7 +42,26 @@ router.post("/sign-up", async (req, res, next) => {
   }
 });
 
-router.post("/new-message", asyncHandler(async (req, res, next) => {
+router.post("/dashboard/members", asyncHandler(async (req, res, next) => {
+  // We aren't passing the password into any database, so sanitation may not be strictly necessary
+  if (req.body.password == process.env.MEMBER_PASS) {
+    const user = new User({
+      username: req.user.username,
+      password: req.user.password,
+      member: true,
+      admin: req.user.admin,
+      _id: req.user._id
+    });
+
+    await User.findByIdAndUpdate(req.user._id, user);
+    console.log("User is now a member!")
+  } else {
+    console.log("Incorrect password")
+  }
+  res.redirect("/users/dashboard")
+}));
+
+router.post("/dashboard/new-message", asyncHandler(async (req, res, next) => {
   //TODO: sanatize form here
 
   const message = new Message({
