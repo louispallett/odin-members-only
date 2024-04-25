@@ -3,7 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.redirect("/users/sign-up");
+  if (req.isAuthenticated()) {
+    res.redirect("/users/dashboard");
+  } else {
+    res.redirect("/users/sign-in");
+  }
 });
 
 module.exports = router;
