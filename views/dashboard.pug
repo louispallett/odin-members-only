@@ -3,10 +3,10 @@ extends layout
 block content 
     div(class="flex flex-cols bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
         //- Messages go here
-        div(class="flex flex-col gap-5")
+        div(class="flex flex-col gap-5 flex-1")
             if messages.length 
                 each message in messages 
-                    div(class="bg-blue-50 py-3 px-6 shadow-xl w-full ring-2 ring-blue-600 rounded-lg")
+                    div(class="bg-blue-50 py-3 px-6 shadow-xl ring-2 ring-blue-600 rounded-lg")
                         div(class="grid grid-cols-message gap-2.5")
                             div
                                 p=message.subject 
@@ -14,9 +14,9 @@ block content
                                 if user.member
                                     p=message.content
                                 else 
-                                    p Become a member to see the contents of this message!
+                                    p #[i Become a member to see the contents of this message!]
                             div 
-                                p=message.date
+                                p=message.date_formatted
             else        
                 p There are no messages here!
     div(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
