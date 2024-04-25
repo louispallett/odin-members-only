@@ -16,12 +16,9 @@ router.get("/sign-in", (req, res, next) => {
 
 router.get("/dashboard", asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
-    const [messages, authors] = await Promise.all([
-      Message.find().sort({ date:-1 }).exec(),
-      User.find().exec()
-    ]);
+    const messages = await Message.find().populate("author").sort({ date:-1 }).exec();
   
-    res.render("dashboard", { messages: messages, authors: authors, user: req.user });
+    res.render("dashboard", { messages: messages, user: req.user });
   } else {
     res.redirect("/");
   }
