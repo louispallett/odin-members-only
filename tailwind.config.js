@@ -8,7 +8,7 @@ module.exports = {
       extend: {
         gridTemplateColumns: {
           "dashboard": "2fr 1fr",
-          "message": "1fr 200px",
+          "message": "50px 4fr 1fr",
         },
         spacing: {
           "screen": "1980px",

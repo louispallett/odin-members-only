@@ -8,16 +8,21 @@ block content
                 each message in messages 
                     div(class="bg-blue-50 py-3 px-6 shadow-xl ring-2 ring-blue-600 rounded-lg")
                         div(class="grid grid-cols-message gap-2.5")
-                            div
-                                p=message.subject 
+                            div(class="flex justify-center items-center")
+                                div(class="rounded-full bg-blue-500 px-5 py-2.5")
+                                    p(class="text-center text-xl font-black text-white weight-bold")=message.author.username[0].toUpperCase()
+                            div(class="")
+                                p(class="text-lg p-1.5 pl-2.5")=message.subject 
+                                hr
+                                p(class="py-2.5")=message.content
                                 hr
                                 if user.member
-                                    p=message.content
                                     p=message.author.username
                                 else 
-                                    p #[i Become a member to see the contents of this message!]
-                            div 
-                                p=message.date_formatted
+                                    p #[i Become a member to see who wrote this message]
+                            div(class="flex items-end") 
+                                div
+                                p(class="text-sm text-right")=message.date_formatted
             else        
                 p There are no messages here!
     div(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
