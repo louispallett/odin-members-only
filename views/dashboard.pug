@@ -10,11 +10,11 @@ block content
                             div(class="flex justify-center items-center")
                                 //- div(class="rounded-full bg-blue-500 px-5 py-2.5")
                                 img(class="h-15 p-2.5 bg-blue-500 rounded-full" src="/assets/images/message.svg")
-                            div(class="pl-5")
-                                p(class="text-lg")=message.subject 
+                            div(class="pl-5 flex flex-col")
+                                p(class="text-xl font-black")=message.subject 
                                 p(class="py-2.5")=message.content
                                 if user.member
-                                    p=message.author.username
+                                    p(class="italic text-sm bg-blue-500 text-white rounded-md px-2.5 py-1 self-start") Sent from: #{message.author.username}
                                 else 
                                     p #[i Become a member to see who wrote this message]
                             div(class="flex items-end") 
@@ -30,11 +30,13 @@ block content
             div
                 label(for="subject") Subject
                 input#subject(name="subject" maxLength="30" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
+                span(class="text-xs text-right")
+                    p#sub-counter
             div 
                 label(for="content") Message 
                 textarea#content(name="content" oninput="auto_grow(this)" maxLength="200" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
                 span(class="text-xs text-right")
-                    p#counter Hi
+                    p#msg-counter
             div
                 button(type="submit" class="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Add Message
     dialog#memberDialogue(class="relative bg-white px-6 py-8 shadow-xl ring-1 ring-gray-900/5")
