@@ -40,13 +40,14 @@ router.post("/sign-up", async (req, res, next) => {
 });
 
 router.post("/dashboard/members", asyncHandler(async (req, res, next) => {
-  // We aren't passing the password into any database, so sanitation may not be strictly necessary
+  //TODO: Add sanitation
+  
   if (req.body.password == process.env.MEMBER_PASS) {
     const user = new User({
       username: req.user.username,
       password: req.user.password,
       member: true,
-      admin: req.user.admin,
+      admin: false,
       _id: req.user._id
     });
 

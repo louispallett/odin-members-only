@@ -11,3 +11,4 @@ All content used has been free-of-use for non-commercial uses. A full list of ac
 | github.svg | Github 142 SVG Vector by bypeople, SVG Repo |
 | key.svg | Key SVG Vector by SVG Repo, SVG Repo |
 | message.svg | Message Circle Chat SVG Vector by Dazzle UI, SVG Repo |
+| profile.svg | Profile 1336 SVG Vector, by bypeople, SVG Repo |
