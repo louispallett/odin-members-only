@@ -18,8 +18,10 @@ html(lang="en")
         div(class="flex justify-center items-center gap-2.5 w-content bg-blue-600 px-3 py-1.5 rounded-md")
           img(class="h-5" src="/assets/images/profile.svg")
           p(class="text-white font-bold")=user.username
-        if user.member
+        if user.admin 
           p
+        else if user.member
+          button#adminBtn(class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 font-bold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Admin Login
         else
           button#memberBtn(class="flex justify-center rounded-md bg-blue-600 px-3 py-1.5 font-bold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600") Become a member 
         a(href="/users/logout")
@@ -31,8 +33,13 @@ html(lang="en")
           a(href="https://github.com/louispallett/odin-members-only" class="flex gap-2.5")
             img#github(class="h-4" src="/assets/images/github.svg")
             h2(class="text-sm") © 2024 LowPal, The Odin Project
-  script(type='text/javascript').
-    const memberDialogue = document.getElementById("memberDialogue");
-    const memberBtn = document.getElementById("memberBtn");
-    memberBtn.addEventListener("click", () => memberDialogue.showModal());
-
+  if user.member && !user.admin
+    script(type='text/javascript').
+      const adminDialog = document.getElementById("adminDialog");
+      const adminBtn = document.getElementById("adminBtn");
+      adminBtn.addEventListener("click", () => adminDialog.showModal());
+  else 
+      script(type='text/javascript').
+        const memberDialog = document.getElementById("memberDialog");
+        const memberBtn = document.getElementById("memberBtn");
+        memberBtn.addEventListener("click", () => memberDialog.showModal());

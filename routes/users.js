@@ -42,7 +42,7 @@ router.post("/sign-up", async (req, res, next) => {
 router.post("/dashboard/members", asyncHandler(async (req, res, next) => {
   //TODO: Add sanitation
   
-  if (req.body.password == process.env.MEMBER_PASS) {
+  if (req.body.memberPass == process.env.MEMBER_PASS) {
     const user = new User({
       username: req.user.username,
       password: req.user.password,
@@ -52,12 +52,31 @@ router.post("/dashboard/members", asyncHandler(async (req, res, next) => {
     });
 
     await User.findByIdAndUpdate(req.user._id, user);
-    console.log("User is now a member!")
   } else {
-    console.log("Incorrect password")
+    alert("Incorrect password!")
   }
   res.redirect("/users/dashboard")
 }));
+
+router.post("/dashboard/admin", asyncHandler(async (req, res, next) => {
+  //TODO: Add sanitation
+
+  if (req.body.adminPass == process.env.ADMIN_PASS) {
+    const user = new User({
+      username: req.user.username,
+      password: req.user.password,
+      member: req.user.member,
+      admin: true,
+      _id: req.user._id
+    });
+
+    await User.findByIdAndUpdate(req.user._id, user);
+    console.log("User is now a member!")
+  } else {
+    alert("Incorrect password!")
+  }
+  res.redirect("/users/dashboard")
+}))
 
 router.post("/dashboard/new-message", asyncHandler(async (req, res, next) => {
   //TODO: sanatize form here

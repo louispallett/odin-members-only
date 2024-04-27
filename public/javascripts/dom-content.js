@@ -22,4 +22,4 @@ document.addEventListener("DOMContentLoaded", () => {
         const currentLength = target.value.length;
         counter.innerHTML = currentLength + "/" + maxLength;
     });
-})
+});
