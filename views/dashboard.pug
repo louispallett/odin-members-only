@@ -13,7 +13,7 @@ block content
                                 p(class="text-md md:text-xl font-black")=message.subject 
                                 p(class="text-sm py-1.5 md:py-2.5 sm:text-md")=message.content
                                 if user.member
-                                    p(class="italic text-sm bg-blue-500 text-white rounded-md px-2.5 py-1 self-start") Sent from: #{message.author.username}
+                                    p(class="italic text-xs sm:text-sm bg-blue-500 text-white rounded-md px-2.5 py-1 self-start") Sent from: #{message.author.username}
                                 else 
                                     p #[i Become a member to see who wrote this message]
                             if user.admin 
@@ -35,12 +35,12 @@ block content
         form(action="/users/dashboard/new-message" method="POST")
             div
                 label(for="subject") Subject
-                input#subject(name="subject" maxLength="30" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
+                input#subject(name="subject" maxLength="30" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
                 span(class="text-xs text-right")
                     p#sub-counter
             div
                 label(for="content") Message 
-                textarea#content(name="content" oninput="auto_grow(this)" maxLength="300" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
+                textarea#content(name="content" oninput="auto_grow(this)" maxLength="300" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
                 span(class="text-xs text-right")
                     p#msg-counter
             div
