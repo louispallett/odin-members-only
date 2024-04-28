@@ -1,17 +1,17 @@
 extends layout 
 
 block content 
-    div(class="flex flex-cols bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
+    section(class="flex w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 rounded-lg")
         div(class="flex flex-col gap-5 flex-1")
             if messages.length 
                 each message in messages 
-                    div(class="bg-blue-50 py-3 px-6 shadow-xl ring-2 ring-blue-600 rounded-lg")
-                        div(class="grid grid-cols-message gap-2.5")
+                    div(class="bg-blue-50 py-1.5 px-3 sm:py-3 sm:px-6 shadow-xl ring-2 ring-blue-600 rounded-lg")
+                        div(class="flex flex-col sm:grid sm:grid-cols-message gap-2.5")
                             div(class="flex justify-center items-center")
-                                img(class="h-15 p-2.5 bg-blue-500 rounded-full" src="/assets/images/message.svg")
-                            div(class="pl-5 flex flex-col")
-                                p(class="text-xl font-black")=message.subject 
-                                p(class="py-2.5")=message.content
+                                img(class="hidden sm:block h-15 p-2.5 bg-blue-500 rounded-full" src="/assets/images/message.svg")
+                            div(class="pl-2.5 md:pl-5 flex flex-col")
+                                p(class="text-md md:text-xl font-black")=message.subject 
+                                p(class="text-sm py-1.5 md:py-2.5 sm:text-md")=message.content
                                 if user.member
                                     p(class="italic text-sm bg-blue-500 text-white rounded-md px-2.5 py-1 self-start") Sent from: #{message.author.username}
                                 else 
@@ -30,15 +30,15 @@ block content
                                 p
             else        
                 p There are no messages here!
-    div(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
-        h1(class="text-xl font-bold tracking-tight text-slate-900 text-nowrap max-sm:text-wrap") Write a new message
-        form(class="space-y-6" action="/users/dashboard/new-message" method="POST")
+    section(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 rounded-lg")
+        h1(class="text-lg md:text-xl font-bold tracking-tight text-slate-900 text-nowrap max-sm:text-wrap") Write a new message
+        form(action="/users/dashboard/new-message" method="POST")
             div
                 label(for="subject") Subject
                 input#subject(name="subject" maxLength="30" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
                 span(class="text-xs text-right")
                     p#sub-counter
-            div 
+            div
                 label(for="content") Message 
                 textarea#content(name="content" oninput="auto_grow(this)" maxLength="300" class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-blue-600 sm:text-sm sm:leading-6")
                 span(class="text-xs text-right")
