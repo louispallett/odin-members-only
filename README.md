@@ -12,3 +12,4 @@ All content used has been free-of-use for non-commercial uses. A full list of ac
 | key.svg | Key SVG Vector by SVG Repo, SVG Repo |
 | message.svg | Message Circle Chat SVG Vector by Dazzle UI, SVG Repo |
 | profile.svg | Profile 1336 SVG Vector, by bypeople, SVG Repo |
+| close.svg | Cross SVG Vector, by Konstantin Filatov, SVG Repo |
