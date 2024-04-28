@@ -52,8 +52,6 @@ router.post("/dashboard/members", asyncHandler(async (req, res, next) => {
     });
 
     await User.findByIdAndUpdate(req.user._id, user);
-  } else {
-    alert("Incorrect password!")
   }
   res.redirect("/users/dashboard")
 }));
@@ -71,12 +69,14 @@ router.post("/dashboard/admin", asyncHandler(async (req, res, next) => {
     });
 
     await User.findByIdAndUpdate(req.user._id, user);
-    console.log("User is now a member!")
-  } else {
-    alert("Incorrect password!")
   }
   res.redirect("/users/dashboard")
-}))
+}));
+
+router.post("/dashboard/delete-msg", asyncHandler(async (req, res, next) => {
+  await Message.findByIdAndDelete(req.body.delMsgId);
+  res.redirect("/");
+}));
 
 router.post("/dashboard/new-message", asyncHandler(async (req, res, next) => {
   //TODO: sanatize form here

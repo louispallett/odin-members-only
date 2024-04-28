@@ -33,13 +33,11 @@ html(lang="en")
           a(href="https://github.com/louispallett/odin-members-only" class="flex gap-2.5")
             img#github(class="h-4" src="/assets/images/github.svg")
             h2(class="text-sm") © 2024 LowPal, The Odin Project
-  if user.member && !user.admin
-    script(type='text/javascript').
+  script(type='text/javascript').
       const adminDialog = document.getElementById("adminDialog");
       const adminBtn = document.getElementById("adminBtn");
       adminBtn.addEventListener("click", () => adminDialog.showModal());
-  else 
-      script(type='text/javascript').
-        const memberDialog = document.getElementById("memberDialog");
-        const memberBtn = document.getElementById("memberBtn");
-        memberBtn.addEventListener("click", () => memberDialog.showModal());
+  script(type='text/javascript').
+    const memberDialog = document.getElementById("memberDialog");
+    const memberBtn = document.getElementById("memberBtn");
+    memberBtn.addEventListener("click", () => memberDialog.showModal());

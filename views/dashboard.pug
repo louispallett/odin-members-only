@@ -8,7 +8,6 @@ block content
                     div(class="bg-blue-50 py-3 px-6 shadow-xl ring-2 ring-blue-600 rounded-lg")
                         div(class="grid grid-cols-message gap-2.5")
                             div(class="flex justify-center items-center")
-                                //- div(class="rounded-full bg-blue-500 px-5 py-2.5")
                                 img(class="h-15 p-2.5 bg-blue-500 rounded-full" src="/assets/images/message.svg")
                             div(class="pl-5 flex flex-col")
                                 p(class="text-xl font-black")=message.subject 
@@ -17,11 +16,18 @@ block content
                                     p(class="italic text-sm bg-blue-500 text-white rounded-md px-2.5 py-1 self-start") Sent from: #{message.author.username}
                                 else 
                                     p #[i Become a member to see who wrote this message]
-                            div(class="flex items-end") 
-                                if user.member
+                            if user.admin 
+                                div(class="flex flex-col justify-between items-end")
+                                    form(method="POST" action="/users/dashboard/delete-msg")
+                                        input#delMsgId(name="delMsgId" class="hidden" value=message._id)
+                                        button#delMsgBtn(type="submit" class="bg-red-600 rounded-sm shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500")
+                                            img(class="h-7" src="/assets/images/close.svg")
                                     p(class="text-sm text-right")=message.date_formatted
-                                else 
-                                    p
+                            else if user.member
+                                div(class="flex items-end") 
+                                    p(class="text-sm text-right")=message.date_formatted
+                            else 
+                                p
             else        
                 p There are no messages here!
     div(class="relative bg-white w-full px-6 py-8 shadow-xl ring-1 ring-gray-900/5 sm:rounded-lg")
