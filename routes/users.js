@@ -18,7 +18,7 @@ router.get("/sign-in", (req, res, next) => {
 router.get("/dashboard", asyncHandler(async (req, res, next) => {
   if (req.isAuthenticated()) {
     const messages = await Message.find().populate("author").sort({ date:-1 }).exec();
-    res.render("dashboard", { messages: messages, user: req.user });
+    res.render("dashboard", { title: "Members Only by LowPal", messages: messages, user: req.user });
   } else {
     res.redirect("/");
   }
