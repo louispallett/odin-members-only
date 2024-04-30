@@ -1,12 +1,15 @@
+const compression = require("compression");
+const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
+const helmet = require("helmet")
 const logger = require('morgan');
 const mongoose = require("mongoose");
-const session = require("express-session")
 const MongoStore = require("connect-mongo");
+const path = require('path');
 const passport = require("passport");
+const RateLimit = require("express-rate-limit");
+const session = require("express-session")
 
 require('dotenv').config();
 
@@ -21,6 +24,11 @@ async function main() {
   await mongoose.connect(mongoDB);
 }
 
+const limiter = RateLimit({
+  windowMs: 1 *  60 * 1000,
+  max: 50,
+});
+
 const app = express();
 
 // view engine setup
@@ -32,6 +40,17 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      "default-src": ["'self'"],
+      "script-src": ["'self'", "'unsafe-inline'"],
+      "script-src-attr": ["'self'", "'unsafe-inline'", "'auto_grow'"]
+    },
+  }),
+);
+app.use(logger('dev'));
+app.use(limiter);
 
 app.use(session({
   secret: process.env.SECRET,
@@ -48,18 +67,8 @@ app.use(session({
 
 require("./config/passport.js");
 
-// These two middlewears work together - firstly they check if the user is null. If it is NOT null, they will,
-// get the user and from the req.user and do stuff with it.
-// Of course, if it is NULL, then the user is not logged in.
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use((req, res, next) => {
-  // res.locals.currentUser = req.user;
-  console.log(req.session);
-  console.log(req.user);
-  next();
-});
 
 app.use('/', indexRouter);
 app.use("/users", usersRouter);
