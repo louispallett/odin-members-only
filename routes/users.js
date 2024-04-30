@@ -5,6 +5,7 @@ const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 
 const Message = require("../models/message");
+const replaceEncodedCharacters = require("../public/javascripts/encodedChar");
 const User = require("../models/user");
 
 router.get("/sign-up", (req, res, next) => {
@@ -141,6 +142,9 @@ router.post("/dashboard/new-message",
       content: req.body.content,
       date: new Date()    
     });
+
+    message.subject = replaceEncodedCharacters(message.subject);
+    message.content = replaceEncodedCharacters(message.content);    
 
     await message.save();
     res.redirect("/users/dashboard")
