@@ -78,7 +78,7 @@ router.post("/dashboard/members",
     .escape(),
 
 asyncHandler(async (req, res, next) => {
-  if (req.body.memberPass == process.env.MEMBER_PASS) {
+  if (req.body.memberPass === process.env.MEMBER_PASS) {
     const user = new User({
       username: req.user.username,
       password: req.user.password,
